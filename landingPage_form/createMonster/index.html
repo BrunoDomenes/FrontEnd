@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Monstro & Combate</title>
+    <!-- Aqui você colocará o link do seu CSS depois -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <div class="topo">
+            <button type="button" id="btn-tema">Mudar para tema claro</button>
+        </div>
+        <h1>Criador de Ficha de Monstro</h1>
+        <p>Preencha os campos abaixo para gerar o seu monstro e as regras de batalha.</p>
+
+        <form id="form-monstro">
+            
+            <!-- SEÇÃO 1: DADOS DO MONSTRO -->
+            <fieldset>
+                <legend>Informações do monstro</legend>
+
+                <div class="campo">
+                    <label for="nome-monstro">Nome do Monstro:</label>
+                    <input type="text" id="nome-monstro" name="nomeMonstro" placeholder="Ex: Bug Cego do Servidor" required>
+                </div>
+
+                <div class="campo">
+                    <label for="descricao-monstro">Descrição:</label>
+                    <textarea id="descricao-monstro" name="descricaoMonstro" rows="3" placeholder="Ex: Um inseto feito de código corrompido..."></textarea>
+                </div>
+
+                <div class="campo">
+                    <label for="aparencia-monstro">Aparência física (opcional):</label>
+                    <textarea id="aparencia-monstro" name="aparenciaMonstro" rows="2" placeholder="Ex: Corpo feito de cabos e placas enferrujadas..."></textarea>
+                </div>
+
+                <div class="campo">
+                    <label for="tatica-monstro">Tática de combate (opcional):</label>
+                    <textarea id="tatica-monstro" name="taticaMonstro" rows="2" placeholder="Ex: Ataca primeiro os alvos mais fracos..."></textarea>
+                </div>
+
+                <div class="linha-dupla">
+                    <div class="campo">
+                        <label for="nivel-monstro">Nível (1–20):</label>
+                        <input type="number" id="nivel-monstro" name="nivelMonstro" value="1" min="1" max="20" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="raridade-monstro">Raridade:</label>
+                        <select id="raridade-monstro" name="raridadeMonstro">
+                            <option value="comum" selected>Comum (×1)</option>
+                            <option value="raro">Raro (×1,3)</option>
+                            <option value="epico">Épico (×1,6)</option>
+                            <option value="lendario">Lendário (×2)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="elemento-monstro">Elemento:</label>
+                    <select id="elemento-monstro" name="elementoMonstro">
+                        <option value="fogo" selected>Fogo</option>
+                        <option value="agua">Água</option>
+                        <option value="sombra">Sombra</option>
+                        <option value="codigo">Código</option>
+                        <option value="rede">Rede</option>
+                    </select>
+                </div>
+
+                <div class="linha-dupla">
+                    <div class="campo">
+                        <label for="tipo-monstro">Tipo:</label>
+                        <select id="tipo-monstro" name="tipoMonstro">
+                            <option value="besta">Besta</option>
+                            <option value="morto-vivo">Morto-vivo</option>
+                            <option value="constructo">Constructo</option>
+                            <option value="demonio">Demônio</option>
+                            <option value="humanoide">Humanoide</option>
+                            <option value="entidade" selected>Entidade digital</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="tamanho-monstro">Tamanho:</label>
+                        <select id="tamanho-monstro" name="tamanhoMonstro">
+                            <option value="minusculo">Minúsculo</option>
+                            <option value="pequeno">Pequeno</option>
+                            <option value="medio" selected>Médio</option>
+                            <option value="grande">Grande</option>
+                            <option value="enorme">Enorme</option>
+                            <option value="colossal">Colossal</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- SEÇÃO 1B: ATRIBUTOS BASE -->
+            <fieldset>
+                <legend>Atributos base</legend>
+
+                <div class="linha-dupla">
+                    <div class="campo">
+                        <label for="for-monstro">Força:</label>
+                        <input type="number" id="for-monstro" name="forMonstro" value="10" min="1" max="30">
+                    </div>
+                    <div class="campo">
+                        <label for="agi-monstro">Agilidade:</label>
+                        <input type="number" id="agi-monstro" name="agiMonstro" value="10" min="1" max="30">
+                    </div>
+                </div>
+
+                <div class="linha-dupla">
+                    <div class="campo">
+                        <label for="int-monstro">Inteligência:</label>
+                        <input type="number" id="int-monstro" name="intMonstro" value="10" min="1" max="30">
+                    </div>
+                    <div class="campo">
+                        <label for="vit-monstro">Vitalidade:</label>
+                        <input type="number" id="vit-monstro" name="vitMonstro" value="10" min="1" max="30">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- SEÇÃO 2: ATAQUES -->
+            <fieldset>
+                <legend>Ataques especiais</legend>
+
+                <!-- Ataque 1 -->
+                <div class="linha-tripla">
+                    <div class="campo">
+                        <label for="nome-ataque1">Nome do Ataque 1:</label>
+                        <input type="text" id="nome-ataque1" name="nomeAtaque1" placeholder="Ex: Loop Infinito">
+                    </div>
+                    <div class="campo">
+                        <label for="dano-ataque1">Dano do Ataque 1:</label>
+                        <input type="number" id="dano-ataque1" name="danoAtaque1" placeholder="Ex: 25">
+                    </div>
+                    <div class="campo">
+                        <label for="efeito-ataque1">Efeito:</label>
+                        <select id="efeito-ataque1" name="efeitoAtaque1">
+                            <option value="nenhum" selected>Nenhum</option>
+                            <option value="veneno">Veneno</option>
+                            <option value="atordoar">Atordoar</option>
+                            <option value="queimar">Queimar</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Ataque 2 -->
+                <div class="linha-tripla">
+                    <div class="campo">
+                        <label for="nome-ataque2">Nome do Ataque 2:</label>
+                        <input type="text" id="nome-ataque2" name="nomeAtaque2" placeholder="Ex: Null Pointer Attack">
+                    </div>
+                    <div class="campo">
+                        <label for="dano-ataque2">Dano do Ataque 2:</label>
+                        <input type="number" id="dano-ataque2" name="danoAtaque2" placeholder="Ex: 40">
+                    </div>
+                    <div class="campo">
+                        <label for="efeito-ataque2">Efeito:</label>
+                        <select id="efeito-ataque2" name="efeitoAtaque2">
+                            <option value="nenhum" selected>Nenhum</option>
+                            <option value="veneno">Veneno</option>
+                            <option value="atordoar">Atordoar</option>
+                            <option value="queimar">Queimar</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Ataque 3 -->
+                <div class="linha-tripla">
+                    <div class="campo">
+                        <label for="nome-ataque3">Nome do Ataque 3:</label>
+                        <input type="text" id="nome-ataque3" name="nomeAtaque3" placeholder="Ex: Tela Azul">
+                    </div>
+                    <div class="campo">
+                        <label for="dano-ataque3">Dano do Ataque 3:</label>
+                        <input type="number" id="dano-ataque3" name="danoAtaque3" placeholder="Ex: 30">
+                    </div>
+                    <div class="campo">
+                        <label for="efeito-ataque3">Efeito:</label>
+                        <select id="efeito-ataque3" name="efeitoAtaque3">
+                            <option value="nenhum" selected>Nenhum</option>
+                            <option value="veneno">Veneno</option>
+                            <option value="atordoar">Atordoar</option>
+                            <option value="queimar">Queimar</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="habilidades-monstro">Habilidades especiais (uma por linha):</label>
+                    <textarea id="habilidades-monstro" name="habilidadesMonstro" rows="3" placeholder="Ex: Ocultação de Processo: se esconde e o próximo ataque contra ela falha"></textarea>
+                </div>
+            </fieldset>
+
+            <!-- SEÇÃO 3: REGRAS DE COMBATE -->
+            <fieldset>
+                <legend>Parâmetros de combate</legend>
+
+                <div class="campo">
+                    <label for="dado-usado">Tipo de Dado para Acerto:</label>
+                    <select id="dado-usado" name="dadoUsado">
+                        <option value="D6">Dado de 6 faces (D6)</option>
+                        <option value="D12">Dado de 12 faces (D12)</option>
+                        <option value="D20" selected>Dado de 20 faces (D20)</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="minimo-acerto">Valor Mínimo para Acertar:</label>
+                    <input type="number" id="minimo-acerto" name="minimoAcerto" value="12" min="1" max="20">
+                </div>
+            </fieldset>
+
+            <!-- SEÇÃO 4: ESPÓLIO -->
+            <fieldset>
+                <legend>Espólio</legend>
+
+                <div class="linha-dupla">
+                    <div class="campo">
+                        <label for="xp-monstro">XP concedido:</label>
+                        <input type="number" id="xp-monstro" name="xpMonstro" value="100" min="0" max="9999">
+                    </div>
+                    <div class="campo">
+                        <label for="ouro-monstro">Ouro:</label>
+                        <input type="number" id="ouro-monstro" name="ouroMonstro" value="50" min="0" max="9999">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- BOTÃO DE ENVIO -->
+            <button type="button" id="btn-aleatorio">Preencher aleatório</button>
+            <button type="submit" id="btn-gerar">Gerar Ficha e Regras</button>
+
+        </form>
+
+        <!-- FICHA GERADA -->
+        <section id="ficha-resultado" hidden>
+            <h2>Ficha gerada</h2>
+            <div id="ficha-conteudo"></div>
+            <button type="button" id="btn-salvar">Salvar ficha</button>
+            <button type="button" id="btn-exportar-md">Exportar MD</button>
+        </section>
+
+        <!-- FICHAS SALVAS -->
+        <section id="fichas-salvas">
+            <h2>Fichas salvas</h2>
+            <ul id="lista-fichas"></ul>
+        </section>
+    </main>
+
+    <!-- Espaço para o seu JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
