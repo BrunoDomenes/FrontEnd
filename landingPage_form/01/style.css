@@ -140,6 +140,29 @@ textarea:focus-visible {
     margin-bottom: 14px;
 }
 
+#btn-aleatorio {
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--texto);
+    background-color: transparent;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 12px 20px;
+    width: 100%;
+    cursor: pointer;
+    transition: border-color 150ms ease;
+}
+
+#btn-aleatorio:hover {
+    border-color: var(--chama);
+}
+
+#btn-aleatorio:focus-visible {
+    outline: 2px solid var(--chama);
+    outline-offset: 3px;
+}
+
 #btn-gerar {
     font-family: 'Sora', 'Inter', sans-serif;
     font-size: 1rem;
@@ -182,4 +205,44 @@ textarea:focus-visible {
     * {
         transition: none;
     }
+}
+
+/* Tema claro: mesmos tokens, valores invertidos */
+[data-theme="claro"] {
+    color-scheme: light;
+
+    --abismo: #f4f4f1;
+    --pedra: #ffffff;
+    --borda: #dcd9d0;
+    --texto: #1c2030;
+    --nevoa: #5a6172;
+    --campo: #f0efeb;
+}
+
+.topo {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
+#btn-tema {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--nevoa);
+    background-color: transparent;
+    border: 1px solid var(--borda);
+    border-radius: 999px;
+    padding: 6px 14px;
+    cursor: pointer;
+}
+
+#btn-tema:hover {
+    color: var(--texto);
+    border-color: var(--chama);
+}
+
+#btn-tema:focus-visible {
+    outline: 2px solid var(--chama);
+    outline-offset: 2px;
 }
