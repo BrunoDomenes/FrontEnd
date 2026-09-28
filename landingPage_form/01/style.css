@@ -136,10 +136,6 @@ textarea:focus-visible {
     gap: 12px;
 }
 
-.linha-dupla .campo {
-    margin-bottom: 14px;
-}
-
 #btn-aleatorio {
     font-family: 'Sora', 'Inter', sans-serif;
     font-size: 0.95rem;
@@ -163,7 +159,9 @@ textarea:focus-visible {
     outline-offset: 3px;
 }
 
-#btn-gerar {
+#btn-gerar,
+#btn-salvar,
+#btn-exportar-md {
     font-family: 'Sora', 'Inter', sans-serif;
     font-size: 1rem;
     font-weight: 700;
@@ -178,11 +176,15 @@ textarea:focus-visible {
     transition: background-color 150ms ease;
 }
 
-#btn-gerar:hover {
+#btn-gerar:hover,
+#btn-salvar:hover,
+#btn-exportar-md:hover {
     background-color: var(--chama-hover);
 }
 
-#btn-gerar:focus-visible {
+#btn-gerar:focus-visible,
+#btn-salvar:focus-visible,
+#btn-exportar-md:focus-visible {
     outline: 2px solid var(--texto);
     outline-offset: 3px;
 }
@@ -196,8 +198,18 @@ textarea:focus-visible {
         font-size: 1.5rem;
     }
 
-    .linha-dupla {
+    .linha-dupla,
+    .linha-tripla {
         grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ficha-item {
+        flex-direction: column;
+        align-items: stretch;
     }
 }
 
@@ -243,6 +255,166 @@ textarea:focus-visible {
 }
 
 #btn-tema:focus-visible {
+    outline: 2px solid var(--chama);
+    outline-offset: 2px;
+}
+
+/* Linha de 3 colunas (nome + dano + efeito do ataque) */
+.linha-tripla {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 12px;
+}
+
+/* Seções de resultado */
+#ficha-resultado,
+#fichas-salvas {
+    margin-top: 28px;
+    width: 100%;
+}
+
+h2 {
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+#ficha-conteudo {
+    background-color: var(--pedra);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 12px;
+}
+
+#ficha-conteudo h3 {
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-size: 1.15rem;
+    margin-bottom: 2px;
+}
+
+.ficha-linha {
+    color: var(--nevoa);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.ficha-descricao {
+    margin-bottom: 14px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.stat {
+    background-color: var(--campo);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 8px 4px;
+    text-align: center;
+}
+
+.stat strong {
+    display: block;
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-size: 1.05rem;
+}
+
+.stat span {
+    font-size: 0.75rem;
+    color: var(--nevoa);
+}
+
+.ficha-ataques {
+    list-style: none;
+    margin-bottom: 14px;
+}
+
+.ficha-ataques li {
+    padding: 6px 0;
+    border-top: 1px solid var(--borda);
+}
+
+.ficha-ataques li:first-child {
+    border-top: none;
+}
+
+.ficha-regra {
+    font-size: 0.85rem;
+    color: var(--nevoa);
+}
+
+#ficha-conteudo h4 {
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-size: 1rem;
+    margin: 12px 0 4px;
+}
+
+#btn-exportar-md {
+    margin-top: 10px;
+}
+
+#lista-fichas {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#lista-fichas .vazio {
+    color: var(--nevoa);
+    font-size: 0.9rem;
+}
+
+.ficha-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: var(--pedra);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+.ficha-item .info strong {
+    display: block;
+    font-size: 0.95rem;
+}
+
+.ficha-item .info span {
+    font-size: 0.8rem;
+    color: var(--nevoa);
+}
+
+.ficha-item .acoes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.mini-btn {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--texto);
+    background-color: transparent;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.mini-btn:hover {
+    border-color: var(--chama);
+}
+
+.mini-btn:focus-visible {
     outline: 2px solid var(--chama);
     outline-offset: 2px;
 }
