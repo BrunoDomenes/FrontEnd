@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Monstro & Combate</title>
+    <!-- Aqui você colocará o link do seu CSS depois -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Criador de Ficha de Monstro</h1>
+        <p>Preencha os campos abaixo para gerar o seu monstro e as regras de batalha.</p>
+
+        <form id="form-monstro">
+            
+            <!-- SEÇÃO 1: DADOS DO MONSTRO -->
+            <fieldset>
+                <legend>🐉 Informações do Monstro</legend>
+
+                <div class="campo">
+                    <label for="nome-monstro">Nome do Monstro:</label>
+                    <input type="text" id="nome-monstro" name="nomeMonstro" placeholder="Ex: Bug Cego do Servidor" required>
+                </div>
+
+                <div class="campo">
+                    <label for="descricao-monstro">Descrição:</label>
+                    <textarea id="descricao-monstro" name="descricaoMonstro" rows="3" placeholder="Ex: Um inseto feito de código corrompido..."></textarea>
+                </div>
+
+                <div class="linha-dupla">
+                    <div class="campo">
+                        <label for="vida-hp">💖 Vida (HP):</label>
+                        <input type="number" id="vida-hp" name="vidaHp" placeholder="Ex: 350" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="defesa-monstro">🛡️ Defesa:</label>
+                        <select id="defesa-monstro" name="defesaMonstro">
+                            <option value="Baixa">Baixa</option>
+                            <option value="Média" selected>Média</option>
+                            <option value="Alta">Alta</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- SEÇÃO 2: ATAQUES -->
+            <fieldset>
+                <legend>⚔️ Ataques Especiais</legend>
+
+                <!-- Ataque 1 -->
+                <div class="linha-dupla">
+                    <div class="campo">
+                        <label for="nome-ataque1">Nome do Ataque 1:</label>
+                        <input type="text" id="nome-ataque1" name="nomeAtaque1" placeholder="Ex: Loop Infinito">
+                    </div>
+                    <div class="campo">
+                        <label for="dano-ataque1">Dano do Ataque 1:</label>
+                        <input type="number" id="dano-ataque1" name="danoAtaque1" placeholder="Ex: 25">
+                    </div>
+                </div>
+
+                <!-- Ataque 2 -->
+                <div class="linha-dupla">
+                    <div class="campo">
+                        <label for="nome-ataque2">Nome do Ataque 2:</label>
+                        <input type="text" id="nome-ataque2" name="nomeAtaque2" placeholder="Ex: Null Pointer Attack">
+                    </div>
+                    <div class="campo">
+                        <label for="dano-ataque2">Dano do Ataque 2:</label>
+                        <input type="number" id="dano-ataque2" name="danoAtaque2" placeholder="Ex: 40">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- SEÇÃO 3: REGRAS DE COMBATE -->
+            <fieldset>
+                <legend>📜 Parâmetros de Combate</legend>
+
+                <div class="campo">
+                    <label for="dado-usado">Tipo de Dado para Acerto:</label>
+                    <select id="dado-usado" name="dadoUsado">
+                        <option value="D6">Dado de 6 faces (D6)</option>
+                        <option value="D12">Dado de 12 faces (D12)</option>
+                        <option value="D20" selected>Dado de 20 faces (D20)</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="minimo-acerto">Valor Mínimo para Acertar:</label>
+                    <input type="number" id="minimo-acerto" name="minimoAcerto" value="12" min="1" max="20">
+                </div>
+            </fieldset>
+
+            <!-- BOTÃO DE ENVIO -->
+            <button type="submit" id="btn-gerar">Gerar Ficha e Regras</button>
+
+        </form>
+    </main>
+
+    <!-- Espaço para o seu JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
