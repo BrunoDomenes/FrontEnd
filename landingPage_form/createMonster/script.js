@@ -202,10 +202,10 @@ function numeroAleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function lerNumero(id, padrao, min, max) {
+function lerNumero(id, padrao) {
     const valor = parseInt(document.getElementById(id).value, 10);
     if (isNaN(valor)) return padrao;
-    return Math.min(Math.max(valor, min), max);
+    return valor;
 }
 
 // Evita que texto digitado quebre o HTML da ficha
@@ -224,13 +224,13 @@ function derive(base, nivel, multRaridade) {
         maxHp: Math.round((20 + base.vit * 8) * multNivel * multRaridade),
         ataque: Math.round(base.for * 2 * multNivel * multRaridade),
         defesa: Math.round((base.vit + base.agi * 0.5) * multNivel * multRaridade),
-        crit: Math.min(0.05 + base.agi * 0.005, 0.5),
+        crit: 0.05 + base.agi * 0.005,
         velocidade: base.agi
     };
 }
 
 function coletarDados() {
-    const nivel = lerNumero("nivel-monstro", 1, 1, 20);
+    const nivel = lerNumero("nivel-monstro", 1);
     const raridade = document.getElementById("raridade-monstro").value;
     return {
         nome: document.getElementById("nome-monstro").value.trim(),
@@ -243,24 +243,24 @@ function coletarDados() {
         tipo: document.getElementById("tipo-monstro").value,
         tamanho: document.getElementById("tamanho-monstro").value,
         base: {
-            for: lerNumero("for-monstro", 10, 1, 30),
-            agi: lerNumero("agi-monstro", 10, 1, 30),
-            int: lerNumero("int-monstro", 10, 1, 30),
-            vit: lerNumero("vit-monstro", 10, 1, 30)
+            for: lerNumero("for-monstro", 10),
+            agi: lerNumero("agi-monstro", 10),
+            int: lerNumero("int-monstro", 10),
+            vit: lerNumero("vit-monstro", 10)
         },
         ataques: [1, 2, 3].map((i) => ({
             nome: document.getElementById("nome-ataque" + i).value.trim() || "Ataque " + i,
-            dano: lerNumero("dano-ataque" + i, 10, 0, 999),
+            dano: lerNumero("dano-ataque" + i, 10),
             efeito: document.getElementById("efeito-ataque" + i).value
         })),
         habilidades: document.getElementById("habilidades-monstro").value.split("\n").map((h) => h.trim()).filter((h) => h.length > 0),
         combate: {
             dado: document.getElementById("dado-usado").value,
-            minimo: lerNumero("minimo-acerto", 12, 1, 20)
+            minimo: lerNumero("minimo-acerto", 12)
         },
         espolio: {
-            xp: lerNumero("xp-monstro", 100, 0, 9999),
-            ouro: lerNumero("ouro-monstro", 50, 0, 9999)
+            xp: lerNumero("xp-monstro", 100),
+            ouro: lerNumero("ouro-monstro", 50)
         }
     };
 }
@@ -385,7 +385,7 @@ function nivelDesafio(der) {
 
 function chanceAcerto(combate) {
     const faces = { D6: 6, D12: 12, D20: 20 }[combate.dado];
-    return Math.min(100, Math.max(0, Math.round((faces - combate.minimo + 1) / faces * 100)));
+    return Math.round((faces - combate.minimo + 1) / faces * 100);
 }
 
 function gerarMarkdown(ficha) {
