@@ -31,6 +31,6 @@ border-radius: 5px;
 }
 
 #btn-enviar:hover {
-background-color: #0369a1; /* Um azul mais escuro */
-cursor: pointer; /* Transforma a seta numa mãozinha */
+background-color: #0369a1; 
+cursor: pointer; 
 }
