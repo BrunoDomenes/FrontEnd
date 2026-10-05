@@ -1,0 +1,39 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #e0f2fe;
+}
+
+fieldset{
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+fieldset :is(input, select){
+    width: 100%;
+}
+
+#btn-enviar{
+    background-color: #0284c7;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+
+    display: flex;
+    margin: 10px auto 0px auto;
+}
+
+#btn-enviar:hover{
+    background-color: #0369a1;
+    cursor: pointer;
+}
