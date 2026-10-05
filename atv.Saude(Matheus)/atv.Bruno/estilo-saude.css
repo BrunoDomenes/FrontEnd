@@ -1,0 +1,36 @@
+
+body{
+ background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    margin: -20px 0 50px;
+    
+}
+
+fieldset{
+
+background-color: white;
+padding: 20px;
+border-radius: 10px;
+
+}
+
+fieldset:is(input, select){
+    width: 100%;
+}
+
+#btn-enviar{
+background-color: #0284c7;
+color: white;
+padding: 10px;
+border-radius: 5px;
+}
+
+#btn-enviar:hover {
+background-color: #0369a1; /* Um azul mais escuro */
+cursor: pointer; /* Transforma a seta numa mãozinha */
+}
