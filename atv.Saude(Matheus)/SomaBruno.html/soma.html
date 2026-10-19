@@ -10,8 +10,7 @@
     <h2>Calculadora de Soma</h2>
 
     <label for="numero_1">Numero 1:</label>
-    <input type="number"> id="numero_1"
-    placeholder="Digite o primeiro numero: ">
+    <input type="number" id="numero_1" placeholder="Digite o primeiro numero: " >
 
     <br>
     <br>
@@ -23,7 +22,16 @@
     <br>
     <br>
 
-    <button>Somar</button>
+    <button onclick="somar()">Somar</button>
+    <button onclick="sub()">sub</button>
+    <button onclick="multi()">multi</button>
+    <button onclick="div()">div</button>
+
+    <p id="resultado"> O resultado é: </p>
+
+    <script src="script.js"></script>
+
+
 
     
 </body>
