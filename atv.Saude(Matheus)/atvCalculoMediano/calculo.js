@@ -7,11 +7,11 @@ function calcularMediana() {
             let mediana;
 
             
-            if ((n1 >= n2 && n1 <= n3) || (n1 <= n2 && n1 >= n3)) {
+            if (n1 >= n2 && n1 <= n3) {
                 mediana = n1;
             } 
             
-            else if ((n2 >= n1 && n2 <= n3) || (n2 <= n1 && n2 >= n3)) {
+            else if (n2 >= n1 && n2 <= n3) {
                 mediana = n2;
             } 
             
