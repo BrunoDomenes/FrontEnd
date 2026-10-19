@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container{
+    border: solid 2px black;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+h2{
+    padding: 10px;
+}
+input{
+    font-size: 15px;
+    width: 25%;
+}
+
+p{
+    text-align: center;
+}
+button{
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 5px;
+    width: 100px;
+}
+
