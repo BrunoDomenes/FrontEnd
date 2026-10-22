@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!--Google Fonts-->
+
+    <link rel="stylesheet" href="style.css">
+    <title>Jogo de Carta</title>
+</head>
+<body>
+    <div class="container">
+        <h4 id="txt_rodada">Rodada: 0/5</h4>
+        <h1>Baralhos</h1>
+
+        <fieldset>
+            <legend>Jogadores</legend>
+            
+            <label for="jogador_01">Jogador 1:</label>
+            <input type="text" id="jogador_01" placeholder="Digite seu Nome">
+            <br>
+            <label for="jogador_02">Jogador 2:</label>
+            <input type="text" id="jogador_02" placeholder="Digite seu Nome">
+        </fieldset>
+
+
+        <button id="btn-01" class="btn_consultar">Jogador 1</button>
+        <button id="btn-02" class="btn_consultar">Jogador 2</button>
+        <p id="msg">Clique nos botões para consultar as cartas</p>
+
+        <img id="carta-01" width="150" hidden>
+        <img id="carta-02" width="150" hidden>
+        <p id="msg2" style="color: green;"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
