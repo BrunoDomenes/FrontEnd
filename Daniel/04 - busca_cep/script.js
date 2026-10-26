@@ -1,7 +1,7 @@
 document.getElementById("cep_user").addEventListener("blur", buscarCep);
 
 function buscarCep(){
-    let cep = this.value.replace();
+    let cep = this.value.replace(/\D/g, '');
 
   if (cep.length === 8) {
     let url = `https://viacep.com.br/ws/${cep}/json/`;
