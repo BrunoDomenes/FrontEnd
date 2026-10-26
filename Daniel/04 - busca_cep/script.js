@@ -11,6 +11,8 @@ function buscarCep(){
       .then((dados) => {
         if (!dados.erro) {
           document.getElementById("endereco_user").value = dados.logradouro;
+          document.getElementById("bairro_user").value = dados.bairro,
+          document.getElementById("localidade_user").value = dados.localidade
         } else {
           alert("CEP não Encontrado!!");
         }
