@@ -42,6 +42,20 @@
 
       <footer class="sidebar__foot">
         <div class="field">
+          <label class="field__label" for="ollama-url">Servidor Ollama</label>
+          <div class="field__row">
+            <input class="input" id="ollama-url" type="text" inputmode="url" spellcheck="false" autocomplete="off" placeholder="http://192.168.0.10:11434" aria-label="URL do servidor Ollama">
+            <button class="icon-btn icon-btn--boxed" id="btn-apply-url" type="button" aria-label="Aplicar servidor" title="Aplicar e testar conexão">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </button>
+          </div>
+          <div class="presets" id="ollama-presets" role="group" aria-label="Atalhos de conexão">
+            <button class="chip" type="button" data-preset="network">Rede</button>
+            <button class="chip" type="button" data-preset="local">Localhost</button>
+          </div>
+        </div>
+
+        <div class="field">
           <label class="field__label" for="model-select">Modelo</label>
           <div class="field__row">
             <select id="model-select" class="select" aria-label="Modelo de IA"></select>
@@ -97,7 +111,7 @@
 
       <footer class="composer-wrap">
         <div class="banner" id="offline-banner" role="status" hidden>
-          <div><strong>Ollama offline.</strong> Inicie com <code>ollama serve</code> e baixe o modelo com <code>ollama pull llama3.2</code>.</div>
+          <div><strong>Ollama offline.</strong> Não foi possível conectar a <code id="offline-url">http://localhost:11434</code>. Inicie com <code>ollama serve</code> ou ajuste o servidor na barra lateral.</div>
           <button class="btn btn--small" id="btn-retry-connection" type="button">Tentar novamente</button>
         </div>
 

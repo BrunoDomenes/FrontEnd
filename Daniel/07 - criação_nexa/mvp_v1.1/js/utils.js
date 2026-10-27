@@ -60,3 +60,28 @@ export function debounce(fn, wait = 150) {
     timer = window.setTimeout(() => fn(...args), wait);
   };
 }
+
+/**
+ * Normaliza a URL base do Ollama: adiciona http:// quando falta o protocolo,
+ * remove barras finais e rejeita valores inválidos.
+ */
+export function normalizeBaseUrl(value) {
+  let url = String(value ?? "").trim();
+  if (!url) return "";
+
+  const hasHttpScheme = /^https?:\/\//i.test(url);
+  const hasOtherScheme = /^[a-z][a-z0-9+.-]*:\/\//i.test(url);
+  if (!hasHttpScheme && hasOtherScheme) return "";
+  if (!hasHttpScheme) url = `http://${url}`;
+
+  url = url.replace(/\/+$/, "");
+
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return "";
+    if (!parsed.hostname) return "";
+    return url;
+  } catch {
+    return "";
+  }
+}

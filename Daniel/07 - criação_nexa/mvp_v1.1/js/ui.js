@@ -12,6 +12,9 @@ export const els = {
   backdrop: el("backdrop"),
   conversationList: el("conversation-list"),
   search: el("search"),
+  ollamaUrl: el("ollama-url"),
+  applyUrl: el("btn-apply-url"),
+  presets: el("ollama-presets"),
   modelSelect: el("model-select"),
   refreshModels: el("btn-refresh-models"),
   ollamaStatus: el("ollama-status"),
@@ -32,6 +35,7 @@ export const els = {
   stop: el("btn-stop"),
   clear: el("btn-clear"),
   offlineBanner: el("offline-banner"),
+  offlineUrl: el("offline-url"),
   retryConnection: el("btn-retry-connection"),
   toasts: el("toasts"),
   srStatus: el("sr-status"),
@@ -205,8 +209,9 @@ export function setOllamaStatus(status, text) {
   if (node) node.textContent = text;
 }
 
-export function setOfflineBanner(visible) {
+export function setOfflineBanner(visible, url) {
   els.offlineBanner.hidden = !visible;
+  if (visible && url) els.offlineUrl.textContent = url;
 }
 
 /* ---------- Mensagens ---------- */

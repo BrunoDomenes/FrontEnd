@@ -95,6 +95,7 @@ async function runCompletion(conversation) {
 
   try {
     await streamChat({
+      baseUrl: state.settings.ollamaUrl,
       model,
       messages: buildContext(conversation, assistant.id),
       signal: controller.signal,
@@ -146,7 +147,7 @@ async function runCompletion(conversation) {
 
       if (isNetworkError(error)) {
         ui.setOllamaStatus("offline", "Ollama offline");
-        ui.setOfflineBanner(true);
+        ui.setOfflineBanner(true, state.settings.ollamaUrl);
       }
     }
 
@@ -205,7 +206,7 @@ function friendlyError(error, model) {
   const message = error?.message || "Erro inesperado.";
 
   if (isNetworkError(error)) {
-    return `Não foi possível conectar ao Ollama em ${CONFIG.ollamaUrl}. Verifique se ele está rodando (ollama serve).`;
+    return `Não foi possível conectar ao Ollama em ${state.settings.ollamaUrl}. Verifique se ele está rodando (ollama serve) e se o endereço está correto.`;
   }
 
   if (/not found|no such model/i.test(message)) {

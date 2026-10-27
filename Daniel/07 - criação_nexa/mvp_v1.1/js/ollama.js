@@ -1,16 +1,16 @@
 import { CONFIG } from "./config.js";
 
-function baseUrl() {
-  return CONFIG.ollamaUrl.replace(/\/+$/, "");
+function trimBaseUrl(url) {
+  return String(url || CONFIG.ollamaUrl).replace(/\/+$/, "");
 }
 
-export async function listModels() {
+export async function listModels(baseUrl = CONFIG.ollamaUrl) {
   const options = { method: "GET" };
   if (typeof AbortSignal !== "undefined" && typeof AbortSignal.timeout === "function") {
     options.signal = AbortSignal.timeout(6000);
   }
 
-  const response = await fetch(`${baseUrl()}/api/tags`, options);
+  const response = await fetch(`${trimBaseUrl(baseUrl)}/api/tags`, options);
   if (!response.ok) {
     throw new Error(`Ollama respondeu com status ${response.status}.`);
   }
@@ -39,8 +39,8 @@ export async function checkHealth() {
 /**
  * Envia o histórico para /api/chat e entrega os pedaços de texto via onToken.
  */
-export async function streamChat({ model, messages, signal, onToken }) {
-  const response = await fetch(`${baseUrl()}/api/chat`, {
+export async function streamChat({ baseUrl = CONFIG.ollamaUrl, model, messages, signal, onToken }) {
+  const response = await fetch(`${trimBaseUrl(baseUrl)}/api/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ model, messages, stream: true }),

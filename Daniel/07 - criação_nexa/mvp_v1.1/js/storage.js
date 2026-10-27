@@ -12,6 +12,7 @@ function defaultState() {
     settings: {
       theme: prefersLight ? "light" : "dark",
       model: CONFIG.defaultModel,
+      ollamaUrl: CONFIG.ollamaUrl,
     },
     conversations: [],
   };
@@ -62,6 +63,9 @@ function normalize(data) {
     }
     if (typeof data.settings.model === "string" && data.settings.model.trim()) {
       state.settings.model = data.settings.model.trim();
+    }
+    if (typeof data.settings.ollamaUrl === "string" && data.settings.ollamaUrl.trim()) {
+      state.settings.ollamaUrl = data.settings.ollamaUrl.trim();
     }
   }
 

@@ -19,13 +19,14 @@ import {
   setChatHooks,
   stopStreaming,
 } from "./chat.js";
-import { debounce } from "./utils.js";
+import { debounce, normalizeBaseUrl } from "./utils.js";
 
 let searchQuery = "";
 
 function init() {
   setChatHooks({ onConversationsChanged: renderSidebar });
   ui.applyTheme(state.settings.theme);
+  syncConnectionUI();
   ui.setStreamingUI(false);
   renderAll();
   bindEvents();
@@ -69,6 +70,13 @@ function bindEvents() {
   ui.els.refreshModels.addEventListener("click", () => refreshModels());
   ui.els.retryConnection.addEventListener("click", () => refreshModels());
   ui.els.modelSelect.addEventListener("change", changeModel);
+  ui.els.applyUrl.addEventListener("click", () => applyOllamaUrl(ui.els.ollamaUrl.value));
+  ui.els.ollamaUrl.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    applyOllamaUrl(ui.els.ollamaUrl.value);
+  });
+  ui.els.presets.addEventListener("click", onPresetClick);
 
   ui.els.search.addEventListener("input", onSearch);
   ui.els.search.addEventListener("keydown", (event) => {
@@ -168,6 +176,56 @@ function changeModel() {
   state.settings.model = model;
   persist();
   ui.renderHeader(getActive(), model);
+}
+
+function trimUrl(url) {
+  return String(url ?? "").replace(/\/+$/, "");
+}
+
+function syncConnectionUI() {
+  ui.els.ollamaUrl.value = state.settings.ollamaUrl;
+  const current = trimUrl(state.settings.ollamaUrl);
+
+  ui.els.presets.querySelectorAll("[data-preset]").forEach((button) => {
+    const target =
+      button.dataset.preset === "local" ? CONFIG.localOllamaUrl : CONFIG.networkOllamaUrl;
+    const active = trimUrl(target) === current;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+    button.title = target;
+  });
+}
+
+function onPresetClick(event) {
+  const button = event.target.closest("[data-preset]");
+  if (!button) return;
+
+  const url =
+    button.dataset.preset === "local" ? CONFIG.localOllamaUrl : CONFIG.networkOllamaUrl;
+  ui.els.ollamaUrl.value = url;
+  applyOllamaUrl(url);
+}
+
+async function applyOllamaUrl(rawUrl) {
+  if (isStreaming()) {
+    ui.toast("Pare a resposta antes de trocar de servidor.", "info");
+    return;
+  }
+
+  const url = normalizeBaseUrl(rawUrl);
+  if (!url) {
+    ui.toast("URL inválida. Use algo como http://192.168.0.10:11434.", "error");
+    syncConnectionUI();
+    return;
+  }
+
+  state.settings.ollamaUrl = url;
+  persist();
+  syncConnectionUI();
+
+  const ok = await refreshModels({ silent: true });
+  if (ok) ui.toast(`Conectado a ${url}.`, "success");
+  else ui.toast(`Não foi possível conectar a ${url}.`, "error");
 }
 
 const onSearch = debounce(() => {
@@ -315,11 +373,11 @@ async function refreshModels({ silent = false } = {}) {
   ui.setOllamaStatus("checking", "Verificando Ollama…");
 
   try {
-    const models = await listModels();
+    const models = await listModels(state.settings.ollamaUrl);
 
     if (!models.length) {
       ui.setOllamaStatus("offline", "Nenhum modelo instalado");
-      ui.setOfflineBanner(true);
+      ui.setOfflineBanner(true, state.settings.ollamaUrl);
       ui.populateModels([state.settings.model], state.settings.model);
       if (!silent) {
         ui.toast("Nenhum modelo encontrado. Rode: ollama pull llama3.2", "error");
@@ -345,7 +403,7 @@ async function refreshModels({ silent = false } = {}) {
     return true;
   } catch {
     ui.setOllamaStatus("offline", "Ollama offline");
-    ui.setOfflineBanner(true);
+    ui.setOfflineBanner(true, state.settings.ollamaUrl);
     ui.populateModels([state.settings.model], state.settings.model);
     if (!silent) {
       ui.toast("Não foi possível falar com o Ollama. Verifique se ele está rodando.", "error");
