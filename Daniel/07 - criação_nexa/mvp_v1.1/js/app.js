@@ -19,7 +19,7 @@ import {
   setChatHooks,
   stopStreaming,
 } from "./chat.js";
-import { debounce, normalizeBaseUrl } from "./utils.js";
+import { corsHint, debounce, normalizeBaseUrl } from "./utils.js";
 
 let searchQuery = "";
 
@@ -403,7 +403,7 @@ async function refreshModels({ silent = false } = {}) {
     return true;
   } catch {
     ui.setOllamaStatus("offline", "Ollama offline");
-    ui.setOfflineBanner(true, state.settings.ollamaUrl);
+    ui.setOfflineBanner(true, state.settings.ollamaUrl, corsHint());
     ui.populateModels([state.settings.model], state.settings.model);
     if (!silent) {
       ui.toast("Não foi possível falar com o Ollama. Verifique se ele está rodando.", "error");

@@ -36,6 +36,7 @@ export const els = {
   clear: el("btn-clear"),
   offlineBanner: el("offline-banner"),
   offlineUrl: el("offline-url"),
+  offlineHint: el("offline-hint"),
   retryConnection: el("btn-retry-connection"),
   toasts: el("toasts"),
   srStatus: el("sr-status"),
@@ -209,9 +210,12 @@ export function setOllamaStatus(status, text) {
   if (node) node.textContent = text;
 }
 
-export function setOfflineBanner(visible, url) {
+export function setOfflineBanner(visible, url, hint = "") {
   els.offlineBanner.hidden = !visible;
-  if (visible && url) els.offlineUrl.textContent = url;
+  if (!visible) return;
+  if (url) els.offlineUrl.textContent = url;
+  els.offlineHint.textContent = hint;
+  els.offlineHint.hidden = !hint;
 }
 
 /* ---------- Mensagens ---------- */

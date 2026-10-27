@@ -2,7 +2,7 @@ import { CONFIG } from "./config.js";
 import { createConversation, getActive, persist, state } from "./state.js";
 import { streamChat } from "./ollama.js";
 import * as ui from "./ui.js";
-import { nowIso, titleFromPrompt, uid } from "./utils.js";
+import { corsHint, nowIso, titleFromPrompt, uid } from "./utils.js";
 
 let controller = null;
 let frame = 0;
@@ -147,7 +147,7 @@ async function runCompletion(conversation) {
 
       if (isNetworkError(error)) {
         ui.setOllamaStatus("offline", "Ollama offline");
-        ui.setOfflineBanner(true, state.settings.ollamaUrl);
+        ui.setOfflineBanner(true, state.settings.ollamaUrl, corsHint());
       }
     }
 

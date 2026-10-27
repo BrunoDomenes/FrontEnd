@@ -111,7 +111,10 @@
 
       <footer class="composer-wrap">
         <div class="banner" id="offline-banner" role="status" hidden>
-          <div><strong>Ollama offline.</strong> Não foi possível conectar a <code id="offline-url">http://localhost:11434</code>. Inicie com <code>ollama serve</code> ou ajuste o servidor na barra lateral.</div>
+          <div>
+            <p><strong>Ollama offline.</strong> Não foi possível conectar a <code id="offline-url">http://localhost:11434</code>. Inicie com <code>ollama serve</code> ou ajuste o servidor na barra lateral.</p>
+            <p class="banner__hint" id="offline-hint" hidden></p>
+          </div>
           <button class="btn btn--small" id="btn-retry-connection" type="button">Tentar novamente</button>
         </div>
 
