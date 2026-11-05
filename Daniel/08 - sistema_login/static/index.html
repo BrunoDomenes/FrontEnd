@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <form action="">
+            <H1>Acesso de Login</H1>
+            <label for="email_user">Email</label>
+            <br>
+            <input type="text" id="email_user" placeholder="joão@gmail.com">
+            <br>
+            <label for="senha_user">Senha</label>
+            <br>
+            
+            <div class="password_campo">
+                <input type="password" id="senha_user" placeholder="*****">
+                <i id="show-password" class="bi bi-eye" onclick="show_password()"></i>
+            </div>
+            
+            <button type="button" id="btn_submit">Entrar</button>
+            <p id="msg"></p>
+
+            <script src="script.js"></script>
+        </form>
+    </div>
+</body>
+</html>
