@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Cadastro</title>
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container" id="container">
+        <!-- Painel de Cadastro -->
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Criar Conta</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>ou use seu e-mail para registro</span>
+                <div class="input-group">
+                    <i class="fa fa-user input-icon"></i>
+                    <input id="nome_cadastro" type="text" placeholder="Nome Completo" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa fa-envelope input-icon"></i>
+                    <input id="email_cadastro" type="email" placeholder="E-mail" required>
+                </div>
+                <div class="input-group">
+                     <i class="fa-solid fa-lock input-icon" onclick="show_password(this, 1)"></i>
+                    <input id="senha_cadastro" type="password" placeholder="Senha" required>
+                </div>
+                <div class="input-group">
+                     <i class="fa-solid fa-lock input-icon" onclick="show_password(this, 2)"></i>
+                    <input id="senha_cadastro_confirmar" type="password" placeholder="Confirmar Senha" required>
+                </div>
+                <button type="submit" class="btn">Cadastrar</button>
+            </form>
+            <script src="/static/script_cadastro.js"></script>
+        </div>
+
+        <!-- Painel de Login -->
+        <div class="form-container sign-in-container">
+            <form action="#" id="form-login">
+                <h1>Entrar</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>ou use sua conta de e-mail</span>
+                <div class="input-group">
+                    <i class="fa fa-envelope input-icon"></i>
+                    <input id="email_login" type="text" placeholder="E-mail" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock input-icon" onclick="show_password(this, 3)"></i>
+                    <input id="senha_login" type="password" placeholder="Senha" required>
+                </div>
+                <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+                <button type="submit" class="btn">Entrar</button>
+                <span id="msg"></span>
+            </form>
+            <script src="/static/script_login.js"></script>
+        </div>
+
+        <!-- Painel de Sobreposição (Overlay) -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Bem-vindo de Volta!</h1>
+                    <p>Para se manter conectado conosco, por favor faça login com seus dados pessoais</p>
+                    <button class="btn ghost" id="signIn">Entrar</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Olá, Amigo!</h1>
+                    <p>Insira seus dados pessoais e comece sua jornada conosco hoje</p>
+                    <button class="btn ghost" id="signUp">Cadastrar-se</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
