@@ -122,3 +122,73 @@ p {
         font-size: 15px;
     }
 }
+
+
+.banner {
+    width: 100%;
+    min-height: 450px;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("banner.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Conteúdo do banner */
+.banner-conteudo {
+    max-width: 800px;
+    color: white;
+}
+
+.banner-conteudo h2 {
+    background: none;
+    color: white;
+    font-size: 38px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.banner-conteudo p {
+    background: none;
+    box-shadow: none;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 25px;
+    padding: 0;
+    text-align: center;
+}
+
+/* Botão */
+.botao-banner {
+    display: inline-block;
+    background-color: #f2a93b;
+    color: #263b2d;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    padding: 14px 30px;
+    border-radius: 30px;
+
+    transition: 0.3s;
+}
+
+.botao-banner:hover {
+    background-color: #237a57;
+    color: white;
+    transform: scale(1.05);
+}
+
