@@ -54,5 +54,4 @@ function VerificarSessao(){
   }catch{
     console.log(Error)
   }
-
 }
