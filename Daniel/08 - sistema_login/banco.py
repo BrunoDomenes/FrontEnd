@@ -63,4 +63,4 @@ class conectar:
             "perfil": usuario[4]
         }
         
-        
+

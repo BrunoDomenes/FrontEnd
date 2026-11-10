@@ -1,15 +1,14 @@
-const forms = document.getElementById("form-login");
-const msg = document.getElementById("msg");
-const btn = document.getElementsByClassName("btn");
+const forms = document.getElementById("form-login")
+const msg = document.getElementById("msg")
+const btn = document.getElementsByClassName("btn")
 
-const email = document.getElementById("email_login");
-const senha = document.getElementById("senha_login");
+const email = document.getElementById("email_login")
+const senha = document.getElementById("senha_login")
 
-forms.addEventListener("submit", entrar);
+forms.addEventListener("submit", entrar)
 
 async function entrar(evento) {
   evento.preventDefault();
-  btn.disable = true
   msg.textContent = "Verificando....";
 
   try {
@@ -24,7 +23,7 @@ async function entrar(evento) {
       }),
     });
     const dados = await response.json();
-
+    console.log(response)
     if (!response.ok) {
       if ((response.status = 401)) {
         msg.textContent = dados.detail;
