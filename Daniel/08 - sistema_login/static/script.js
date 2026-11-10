@@ -1,3 +1,5 @@
+
+
 function show_password(icon, num) {
   // const password = document.getElementById("senha_user");
   let password;
@@ -20,6 +22,7 @@ function show_password(icon, num) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    VerificarSessao()
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
     const container = document.getElementById('container');
@@ -34,3 +37,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+function VerificarSessao(){
+  try{
+    const url = "http://127.0.0.1:8000/me"
+
+    fetch(url)
+    .then(response =>{
+      if(response.status == 200){
+        window.location.href='/static/pages/index.html';
+      }else if(response.status == 401){
+        console.log("Realize login")
+      }
+    })
+
+  }catch{
+    console.log(Error)
+  }
+
+}

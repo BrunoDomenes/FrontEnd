@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  position: fixed; /* Fixa o cabeçalho na tela */
+  top: 0; /* Cola o cabeçalho no topo absoluto */
+  left: 50%;
+  transform: translate(-50%);
+
+  border-radius: 10px;
+  width: 90%; /* Garante que ele ocupe toda a largura */
+  height: 70px; /* Altura definida para o cabeçalho */
+  background-color: #1a1a1a; /* Cor de fundo escura */
+  color: #ffffff; /* Cor do texto branca */
+  display: flex; /* Ativa o Flexbox para alinhar os itens */
+  justify-content: space-between; /* Separa o logo/título do menu */
+  align-items: center; /* Alinha tudo verticalmente ao centro */
+  padding: 0 40px; /* Espaçamento interno nas laterais */
+  margin-top: 10px;  
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra elegante abaixo do menu */
+  z-index: 1000; /* Garante que o menu fique por cima de qualquer outro conteúdo */
+}
+
+/* Título / Logo */
+header h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Menu de Navegação */
+header nav ul {
+  display: flex; /* Coloca os links um ao lado do outro */
+  list-style: none; /* Remove as bolinhas da lista */
+  gap: 20px; /* Espaçamento entre os links */
+}
+
+header nav a {
+  color: #ffffff;
+  text-decoration: none; /* Remove o sublinhado padrão dos links */
+  font-size: 16px;
+  transition: color 0.3s; /* Transição suave para o efeito de passar o mouse */
+}
+
+/* Efeito de passar o mouse nos links */
+header nav a:hover {
+  color: #00adb5; /* Muda para um tom de azul/ciano */
+}
+
+main {
+  /* IMPORTANTE: Como o header está fixo, ele "flutua" sobre a página. 
+         Precisamos dessa margem superior igual ou maior que a altura do header (70px)
+         para que o conteúdo inicial não fique escondido atrás dele. */
+  margin-top: 70px;
+  padding: 40px;
+  line-height: 1.6;
+  background-color: #f4f4f9;
+  /* min-height: 200vh; Apenas para criar rolagem na tela e testar o efeito fixo */
+}

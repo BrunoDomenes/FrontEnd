@@ -38,8 +38,9 @@
                     <input id="senha_cadastro_confirmar" type="password" placeholder="Confirmar Senha" required>
                 </div>
                 <button type="submit" class="btn">Cadastrar</button>
+                <span id="msg_cadastro"></span>
             </form>
-            <script src="/static/script_cadastro.js"></script>
+            <script type="module" src="/static/script_cadastro.js"></script>
         </div>
 
         <!-- Painel de Login -->
@@ -54,7 +55,7 @@
                 <span>ou use sua conta de e-mail</span>
                 <div class="input-group">
                     <i class="fa fa-envelope input-icon"></i>
-                    <input id="email_login" type="text" placeholder="E-mail" required>
+                    <input id="email_login" type="email" placeholder="E-mail" required>
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-lock input-icon" onclick="show_password(this, 3)"></i>
@@ -62,9 +63,9 @@
                 </div>
                 <a href="#" class="forgot-password">Esqueceu sua senha?</a>
                 <button type="submit" class="btn">Entrar</button>
-                <span id="msg"></span>
+                <span id="msg_login"></span>
             </form>
-            <script src="/static/script_login.js"></script>
+            <script type="module" src="/static/script_login.js"></script>
         </div>
 
         <!-- Painel de Sobreposição (Overlay) -->
