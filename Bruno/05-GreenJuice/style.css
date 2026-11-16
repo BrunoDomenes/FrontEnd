@@ -1,0 +1,149 @@
+
+/* IMPORTAÇÃO DAS FONTES */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+
+/* CONFIGURAÇÕES GERAIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #FAFDF7;
+    color: #1F2A1F;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+}
+
+/* ÁREA PRINCIPAL */
+main.hero {
+    width: 100%;
+    min-height: 100vh;
+    padding: 45px 6%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* TÍTULO PRINCIPAL */
+main.hero h1 {
+    width: 100%;
+    max-width: 1000px;
+    color: #2E7D32;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* TEXTO DE APRESENTAÇÃO */
+main.hero p {
+    max-width: 900px;
+    color: #1F2A1F;
+    font-size: 1.05rem;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+/* SEÇÃO DA IMAGEM */
+main.hero section.hero {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(31, 42, 31, 0.15);
+    line-height: 0;
+}
+
+/* IMAGEM DO HERO */
+.hero-imagem {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* LINK SOBRE A IMAGEM */
+.hero-botao {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* BOTÃO DE CONVERSÃO */
+.btn-enviar {
+    display: block;
+    margin: 25px auto;
+    padding: 16px 32px;
+    min-height: 52px;
+    background-color: #E8590C;
+    color: #FAFDF7;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* EFEITO DO BOTÃO */
+.btn-enviar:hover {
+    background-color: #c94b08;
+    transform: translateY(-3px);
+}
+
+.btn-enviar:focus-visible {
+    outline: 3px solid #2E7D32;
+    outline-offset: 4px;
+}
+
+/* RESPONSIVIDADE PARA CELULARES */
+@media (max-width: 768px) {
+
+    main.hero {
+        padding: 30px 5%;
+    }
+
+    main.hero h1 {
+        font-size: 1.8rem;
+        margin-bottom: 18px;
+    }
+
+    main.hero p {
+        font-size: 0.95rem;
+        text-align: left;
+        margin-bottom: 25px;
+    }
+
+    main.hero section.hero {
+        border-radius: 12px;
+    }
+
+    .btn-enviar {
+        width: 100%;
+        max-width: 350px;
+        padding: 15px 20px;
+        font-size: 0.95rem;
+    }
+}
+
+/* CELULARES PEQUENOS */
+@media (max-width: 400px) {
+
+    main.hero h1 {
+        font-size: 1.5rem;
+    }
+
+    main.hero p {
+        font-size: 0.9rem;
+    }
+}
