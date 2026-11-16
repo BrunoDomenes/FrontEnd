@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Green Juice – Hero</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fafdf7;
+        --ink: #1f2a1f;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #14201a;
+          --ink: #e8f5e9;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #14201a;
+        --ink: #e8f5e9;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, "Open Sans", sans-serif;
+      }
+      .hero {
+        position: relative;
+        width: 100%;
+        max-width: 1920px;
+        margin: 0 auto;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        container-type: inline-size;
+        background: #2e7d32;
+      }
+      .hero svg.bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(31, 61, 33, 0.5);
+      }
+      .copy {
+        position: absolute;
+        left: 6cqw;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50cqw;
+        color: #fafdf7;
+      }
+      .tag {
+        display: inline-block;
+        border: 0.15cqw solid #8bc34a;
+        color: #fafdf7;
+        border-radius: 5cqw;
+        padding: 0.5cqw 1.4cqw;
+        font-size: 1.2cqw;
+        font-weight: 500;
+        margin-bottom: 2cqw;
+      }
+      h1 {
+        font-family: Poppins, Nunito, sans-serif;
+        font-weight: 800;
+        font-size: 4.6cqw;
+        line-height: 1.1;
+        margin: 0 0 2cqw;
+      }
+      h1 span {
+        color: #8bc34a;
+      }
+      p {
+        font-size: 1.6cqw;
+        line-height: 1.5;
+        margin: 0 0 2.6cqw;
+        max-width: 42cqw;
+        font-weight: 400;
+      }
+      .btn {
+        display: inline-block;
+        background: #e8590c;
+        color: #fafdf7;
+        font-weight: 700;
+        font-size: 1.5cqw;
+        padding: 1.4cqw 3cqw;
+        border-radius: 1cqw;
+        text-decoration: none;
+        min-height: 48px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <svg
+        class="bg"
+        viewBox="0 0 1920 1080"
+        preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="bench" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#C8E6C9" />
+            <stop offset="1" stop-color="#8BC34A" />
+          </linearGradient>
+          <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E8F5E9" />
+            <stop offset="1" stop-color="#8BC34A" />
+          </linearGradient>
+          <linearGradient id="juice" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#8BC34A" />
+            <stop offset="1" stop-color="#2E7D32" />
+          </linearGradient>
+          <radialGradient id="light" cx=".85" cy=".1" r=".8">
+            <stop offset="0" stop-color="#FAFDF7" stop-opacity=".9" />
+            <stop offset="1" stop-color="#FAFDF7" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <rect width="1920" height="1080" fill="url(#wall)" />
+        <rect width="1920" height="1080" fill="url(#light)" />
+        <g fill="#FAFDF7" opacity=".5">
+          <circle cx="1180" cy="170" r="70" />
+          <circle cx="1400" cy="110" r="42" />
+          <circle cx="1700" cy="230" r="90" />
+          <circle cx="1560" cy="60" r="30" />
+          <circle cx="1050" cy="300" r="36" />
+        </g>
+        <rect y="800" width="1920" height="280" fill="url(#bench)" />
+        <rect y="800" width="1920" height="10" fill="#FAFDF7" opacity=".6" />
+        <!-- leaves back -->
+        <g fill="#2E7D32" opacity=".9">
+          <path
+            d="M1120 820 C1050 700 1090 600 1180 560 C1230 650 1200 760 1120 820Z"
+          />
+          <path
+            d="M1800 830 C1880 720 1860 600 1760 560 C1700 660 1730 770 1800 830Z"
+          />
+        </g>
+        <g fill="#8BC34A">
+          <path
+            d="M1160 800 C1150 700 1170 640 1180 580 C1190 650 1200 720 1160 800Z"
+          />
+        </g>
+        <!-- tall bottle -->
+        <g transform="translate(1630 360)">
+          <rect
+            x="40"
+            y="0"
+            width="60"
+            height="70"
+            rx="10"
+            fill="#FAFDF7"
+            opacity=".85"
+          />
+          <rect x="36" y="-26" width="68" height="34" rx="8" fill="#2E7D32" />
+          <path
+            d="M40 70 C-10 120 -10 160 0 190 L0 440 Q0 450 12 450 L128 450 Q140 450 140 440 L140 190 C150 160 150 120 100 70Z"
+            fill="#FAFDF7"
+            opacity=".35"
+            stroke="#FAFDF7"
+            stroke-width="4"
+          />
+          <path
+            d="M6 210 L134 210 L134 436 Q134 444 124 444 L16 444 Q6 444 6 436Z"
+            fill="url(#juice)"
+          />
+          <rect
+            x="24"
+            y="250"
+            width="14"
+            height="170"
+            rx="7"
+            fill="#FAFDF7"
+            opacity=".35"
+          />
+          <rect
+            x="30"
+            y="300"
+            width="80"
+            height="90"
+            rx="10"
+            fill="#FAFDF7"
+            opacity=".9"
+          />
+          <path
+            d="M70 320 c-20 10 -22 40 0 52 c22 -12 20 -42 0 -52z"
+            fill="none"
+            stroke="#2E7D32"
+            stroke-width="3"
+          />
+        </g>
+        <!-- glass 1 -->
+        <g transform="translate(1210 470)">
+          <path
+            d="M0 0 L190 0 L165 330 Q163 345 148 345 L42 345 Q27 345 25 330Z"
+            fill="#FAFDF7"
+            opacity=".3"
+            stroke="#FAFDF7"
+            stroke-width="5"
+          />
+          <path
+            d="M12 70 L178 70 L163 330 Q161 340 148 340 L42 340 Q29 340 27 330Z"
+            fill="url(#juice)"
+          />
+          <ellipse cx="95" cy="70" rx="83" ry="10" fill="#C5E1A5" />
+          <rect
+            x="40"
+            y="95"
+            width="14"
+            height="210"
+            rx="7"
+            fill="#FAFDF7"
+            opacity=".35"
+          />
+          <rect
+            x="110"
+            y="-90"
+            width="14"
+            height="260"
+            rx="7"
+            fill="#FAFDF7"
+            transform="rotate(12 117 40)"
+            opacity=".9"
+          />
+          <g transform="translate(150 -25) rotate(20)">
+            <path
+              d="M0 0 C-30 -30 -30 -70 0 -100 C30 -70 30 -30 0 0Z"
+              fill="#2E7D32"
+            />
+          </g>
+          <g transform="translate(60 -15) rotate(-20)">
+            <path
+              d="M0 0 C-26 -26 -26 -60 0 -84 C26 -60 26 -26 0 0Z"
+              fill="#8BC34A"
+            />
+          </g>
+        </g>
+        <!-- glass 2 -->
+        <g transform="translate(1440 540)">
+          <path
+            d="M0 0 L170 0 L148 260 Q146 275 132 275 L38 275 Q24 275 22 260Z"
+            fill="#FAFDF7"
+            opacity=".3"
+            stroke="#FAFDF7"
+            stroke-width="5"
+          />
+          <path
+            d="M10 55 L160 55 L147 258 Q145 268 132 268 L38 268 Q25 268 23 258Z"
+            fill="url(#juice)"
+          />
+          <ellipse cx="85" cy="55" rx="75" ry="9" fill="#C5E1A5" />
+          <rect
+            x="34"
+            y="80"
+            width="12"
+            height="150"
+            rx="6"
+            fill="#FAFDF7"
+            opacity=".35"
+          />
+        </g>
+        <!-- lime & apple slices -->
+        <g transform="translate(1040 880)">
+          <circle r="70" fill="#8BC34A" />
+          <circle r="58" fill="#E8F5E9" />
+          <g stroke="#8BC34A" stroke-width="4">
+            <path d="M0 -52V52M-52 0H52M-37 -37L37 37M37 -37L-37 37" />
+          </g>
+          <circle r="10" fill="#C5E1A5" />
+        </g>
+        <g transform="translate(1760 900)">
+          <circle r="80" fill="#2E7D32" />
+          <circle r="68" fill="#C5E1A5" />
+          <circle r="22" fill="#E8F5E9" />
+          <circle cx="0" cy="-8" r="5" fill="#1F2A1F" />
+          <circle cx="12" cy="6" r="4" fill="#1F2A1F" />
+          <circle cx="-12" cy="6" r="4" fill="#1F2A1F" />
+        </g>
+        <g transform="translate(1330 930) rotate(-15)" fill="#8BC34A">
+          <path d="M0 0 C40 -50 120 -50 160 0 C120 40 40 40 0 0Z" />
+        </g>
+        <g transform="translate(1620 960) rotate(10)" fill="#2E7D32">
+          <path d="M0 0 C30 -40 90 -40 120 0 C90 32 30 32 0 0Z" />
+        </g>
+        <!-- ginger -->
+        <g transform="translate(1520 880)">
+          <ellipse rx="60" ry="30" fill="#E8F5E9" />
+          <ellipse rx="45" ry="20" fill="#C5E1A5" />
+        </g>
+      </svg>
+      <div class="overlay"></div>
+      <div class="copy">
+        <span class="tag">100% natural · prensado a frio</span>
+        <h1>
+          Seu dia mais leve começa com um copo de <span>Green Juice.</span>
+        </h1>
+        <p>
+          Sucos 100% naturais, prensados a frio e entregues fresquinhos na sua
+          porta. Escolha o kit de degustação ou monte sua assinatura.
+        </p>
+        <a class="btn" href="#formulario">Quero meu kit de degustação</a>
+      </div>
+    </div>
+  </body>
+</html>

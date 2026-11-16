@@ -1,0 +1,111 @@
+/* ============================================================
+   Green Juice — Hero da landing page
+   Requer base.css (tokens, reset, .btn, .tag).
+   ============================================================ */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end; /* mobile: texto na base, sobre o scrim mais escuro */
+  width: 100%;
+  min-height: 100svh;
+  padding: clamp(1.25rem, 6vw, 3rem);
+  padding-bottom: max(
+    clamp(1.5rem, 7vw, 3.5rem),
+    env(safe-area-inset-bottom)
+  );
+  overflow: hidden;
+  background-color: var(--leaf);
+  background-image: var(--scrim-mobile), url("img/green-juice-fundo.svg");
+  background-repeat: no-repeat;
+  background-position: center, 74% 38%;
+  background-size: cover, cover;
+
+  /* escurecimento da foto (briefing: rgba(31, 61, 33, 0.5) no desktop) */
+  --scrim-mobile: linear-gradient(
+    180deg,
+    rgba(31, 61, 33, 0.12) 0%,
+    rgba(31, 61, 33, 0.5) 42%,
+    rgba(31, 61, 33, 0.92) 100%
+  );
+  --scrim-desktop: linear-gradient(
+    rgba(31, 61, 33, 0.5),
+    rgba(31, 61, 33, 0.5)
+  );
+}
+
+.copy {
+  width: 100%;
+  max-width: 46rem;
+  color: var(--on-dark);
+}
+
+.hero .tag {
+  border-width: clamp(1px, 0.15vw, 3px);
+  padding: clamp(0.35rem, 0.5vw, 0.6rem) clamp(0.85rem, 1.4vw, 1.6rem);
+  font-size: clamp(0.8125rem, 1.2vw, 1.2rem);
+  margin-bottom: clamp(0.9rem, 2vw, 1.5rem);
+}
+
+.hero h1 {
+  font-family: Poppins, Nunito, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.6vw, 5.5rem);
+  line-height: 1.1;
+  text-wrap: balance;
+  margin: 0 0 clamp(1rem, 2vw, 1.6rem);
+}
+
+.hero h1 span {
+  color: var(--lime);
+}
+
+.hero p {
+  max-width: 52ch;
+  font-size: clamp(1rem, 1.6vw, 1.9rem);
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 0 0 clamp(1.25rem, 2.6vw, 2.1rem);
+}
+
+/* ---------- Desktop: pôster cinematográfico ---------- */
+
+@media (min-width: 1024px) {
+  .hero {
+    align-items: center;
+    padding: 0 6vw;
+    background-image: var(--scrim-desktop), url("img/green-juice-fundo.svg");
+    background-position: center, center;
+  }
+
+  .copy {
+    width: 50%;
+  }
+}
+
+/* ---------- Casos de borda ---------- */
+
+@media (max-width: 420px) {
+  .hero .btn {
+    width: 100%;
+  }
+}
+
+/* Celular deitado / janelas baixas: deixa rolar em vez de comprimir */
+@media (max-height: 520px) {
+  .hero {
+    padding-block: clamp(1.5rem, 8vh, 3rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(1.75rem, 6vh, 2.5rem);
+  }
+
+  .hero p {
+    font-size: clamp(0.9375rem, 2.6vh, 1.125rem);
+  }
+
+  .hero .tag {
+    margin-bottom: 0.75rem;
+  }
+}

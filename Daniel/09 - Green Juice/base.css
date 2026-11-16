@@ -1,0 +1,166 @@
+/* ============================================================
+   Green Juice — base compartilhada (tokens, reset, botão, selo)
+   Usada por index.html (hero) e pages/forms/form.html (formulário).
+   ============================================================ */
+
+:root {
+  --bg: #fafdf7;
+  --ink: #1f2a1f;
+  --leaf: #2e7d32;
+  --lime: #8bc34a;
+  --mint: #e8f5e9;
+  --cta: #e8590c;
+  --cta-hover: #d94f08;
+  --on-dark: #fafdf7;
+  --line: #cfe3c4;
+  --muted: #5a6b55;
+  --danger: #b3261e;
+
+  --radius-card: clamp(16px, 2vw, 24px);
+  --radius-field: 12px;
+  --shadow-card: 0 18px 40px rgba(31, 61, 33, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14201a;
+    --ink: #e8f5e9;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14201a;
+  --ink: #e8f5e9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, "Open Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Botão de conversão (laranja é exclusivo de CTA) ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  background: var(--cta);
+  color: var(--on-dark);
+  font-family: inherit;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  padding: clamp(0.9rem, 1.4vw, 1.4rem) clamp(1.5rem, 3vw, 3rem);
+  border-radius: clamp(8px, 1vw, 19px);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--cta-hover);
+  transform: translateY(-2px);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 3px;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn--ghost {
+  background: transparent;
+  border: 2px solid var(--on-dark);
+  color: var(--on-dark);
+}
+
+.btn--ghost:hover {
+  background: rgba(250, 253, 247, 0.14);
+}
+
+/* ---------- Selo / tag ---------- */
+
+.tag {
+  display: inline-block;
+  border: 1px solid var(--lime);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn {
+    transition: none;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Botão flutuante de WhatsApp ---------- */
+
+.wa-float {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--leaf);
+  color: var(--on-dark);
+  box-shadow: 0 12px 28px rgba(20, 43, 22, 0.32);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.wa-float:hover {
+  transform: translateY(-2px);
+  background: #256a29;
+}
+
+.wa-float:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-float {
+    transition: none;
+  }
+
+  .wa-float:hover {
+    transform: none;
+  }
+}
