@@ -1,55 +1,45 @@
+"""Geração e validação de sessões opacas (token aleatório + hash no banco)."""
+
+from __future__ import annotations
+
 import hashlib
+import os
 import secrets
 from datetime import datetime, timedelta, timezone
-from pymysql.cursors import DictCursor
-from banco import conectar
 
-banco = conectar()
+from banco import Banco
 
-TEMPO_SESSAO_SEGUNDOS = 15 * 60
+TEMPO_SESSAO_SEGUNDOS = int(os.getenv("TEMPO_SESSAO_SEGUNDOS", str(15 * 60)))
 
-def gerar_hash_token(token):
-    # Converte o texto em bytes.
-    token_bytes = token.encode("utf-8")
-    # Calcula o hash SHA-256.
-    resultado = hashlib.sha256(token_bytes)
-    # Retorna o hash como texto hexadecimal.
-    return resultado.hexdigest()
 
-def agora_utc():
-    # Obtém o horário atual em UTC.
-    agora = datetime.now(timezone.utc)
-    # DATETIME não armazena fuso; o valor continua em UTC.
-    return agora.replace(tzinfo=None)
+def gerar_hash_token(token: str) -> str:
+    """SHA-256 do token. O banco nunca guarda o token em texto claro."""
+    return hashlib.sha256(token.encode("utf-8")).hexdigest()
 
-def criar_sessao(id_user):
-    # Gera um token com 32 bytes aleatórios seguros.
+
+def agora_utc() -> datetime:
+    """Horário atual em UTC, sem tzinfo (compatível com DATETIME do MySQL)."""
+    return datetime.now(timezone.utc).replace(tzinfo=None)
+
+
+def criar_sessao(banco: Banco, id_user: int) -> str:
     token = secrets.token_urlsafe(32)
-    token_hash = gerar_hash_token(token)
-    # Define quando a sessão vai expirar.
-    expira_em = agora_utc() + timedelta(
-        seconds=TEMPO_SESSAO_SEGUNDOS
-    )
-    banco.criar_sessao(token_hash, id_user, expira_em)
-    # A rota colocará o token original no cookie.
+    expira_em = agora_utc() + timedelta(seconds=TEMPO_SESSAO_SEGUNDOS)
+    banco.criar_sessao(gerar_hash_token(token), id_user, expira_em)
     return token
 
-def obter_usuario_da_sessao(token):
-    # Sem token, não existe sessão para consultar.
+
+def obter_usuario_da_sessao(banco: Banco, token: str | None) -> dict | None:
     if not token:
         return None
-    token_hash = gerar_hash_token(token)
-    agora = agora_utc()
-    
-    return banco.obter_usuario_da_sessao(token_hash, agora)
-   
+    return banco.obter_usuario_da_sessao(gerar_hash_token(token), agora_utc())
 
-def encerrar_sessao(token):
+
+def encerrar_sessao(banco: Banco, token: str | None) -> None:
     if not token:
         return
-    token_hash = gerar_hash_token(token)
-    
-    banco.encerrar_sessao(token_hash)
+    banco.encerrar_sessao(gerar_hash_token(token))
 
 
-    
+def limpar_sessoes_expiradas(banco: Banco) -> int:
+    return banco.limpar_sessoes_expiradas(agora_utc())

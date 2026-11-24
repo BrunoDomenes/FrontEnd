@@ -1,57 +1,43 @@
+function alternarVisibilidadeSenha(icone) {
+  const campo = document.getElementById(icone.dataset.toggleSenha);
+  if (!campo) return;
 
+  const estaVisivel = campo.type === "text";
+  campo.type = estaVisivel ? "password" : "text";
 
-function show_password(icon, num) {
-  // const password = document.getElementById("senha_user");
-  let password;
-
-  if(num == 1){
-    password = document.getElementById("senha_cadastro")
-  }else if(num == 2){
-    password = document.getElementById("senha_cadastro_confirmar")
-  }else if(num == 3){
-    password = document.getElementById("senha_login")
-  }
-
-  if (icon.className == "fa-solid fa-lock input-icon") {
-    icon.className = "fa-solid fa-unlock input-icon";
-    password.type = "text";
-  } else {
-    icon.className = "fa-solid fa-lock input-icon";
-    password.type = "password";
-  }
+  icone.classList.toggle("fa-lock", !estaVisivel);
+  icone.classList.toggle("fa-unlock", estaVisivel);
+  icone.setAttribute("aria-pressed", String(!estaVisivel));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    VerificarSessao()
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const container = document.getElementById('container');
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("[data-toggle-senha]").forEach((icone) => {
+    icone.addEventListener("click", () => alternarVisibilidadeSenha(icone));
+  });
 
-    if (signUpButton && signInButton && container) {
-        signUpButton.addEventListener('click', () => {
-            container.classList.add("right-panel-active");
-        });
+  const signUpButton = document.getElementById("signUp");
+  const signInButton = document.getElementById("signIn");
+  const container = document.getElementById("container");
 
-        signInButton.addEventListener('click', () => {
-            container.classList.remove("right-panel-active");
-        });
-    }
+  if (signUpButton && signInButton && container) {
+    signUpButton.addEventListener("click", () => {
+      container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener("click", () => {
+      container.classList.remove("right-panel-active");
+    });
+  }
+
+  verificarSessao();
 });
 
-function VerificarSessao(){
-  try{
-    const url = "http://127.0.0.1:8000/me"
-
-    fetch(url)
-    .then(response =>{
-      if(response.status == 200){
-        window.location.href='/static/pages/index.html';
-      }else if(response.status == 401){
-        console.log("Realize login")
+function verificarSessao() {
+  fetch("/me", { credentials: "same-origin" })
+    .then((resposta) => {
+      if (resposta.status === 200) {
+        window.location.href = "/painel";
       }
     })
-
-  }catch{
-    console.log(Error)
-  }
+    .catch((erro) => console.error("Falha ao verificar a sessão:", erro));
 }

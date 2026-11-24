@@ -1,0 +1,24 @@
+# Segredos e configuração local (NUNCA versionar)
+.env
+.env.*
+!.env_example
+
+# Ambiente virtual
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Editores / ferramentas
+.vscode/
+.idea/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db

@@ -1,41 +1,56 @@
-const forms = document.getElementById("form-login")
-const msg_login = document.getElementById("msg_login")
+const formLogin = document.getElementById("form-login");
+const msgLogin = document.getElementById("msg_login");
+const emailLogin = document.getElementById("email_login");
+const senhaLogin = document.getElementById("senha_login");
 
-const email = document.getElementById("email_login")
-const senha = document.getElementById("senha_login")
+formLogin?.addEventListener("submit", entrar);
 
-forms.addEventListener("submit", entrar)
+function mensagemDeErro(dados, padrao) {
+  if (!dados) return padrao;
+  if (typeof dados.detail === "string") return dados.detail;
+  if (Array.isArray(dados.detail) && dados.detail[0]?.msg) {
+    return dados.detail[0].msg;
+  }
+  return padrao;
+}
 
 async function entrar(evento) {
   evento.preventDefault();
-  msg_login.textContent = "Verificando....";
+  msgLogin.textContent = "Verificando...";
+  msgLogin.style.color = "";
 
   try {
-    const response = await fetch("http://127.0.0.1:8000/login", {
+    const resposta = await fetch("/login", {
       method: "POST",
+      credentials: "same-origin",
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: email.value,
-        senha: senha.value,
+        email: emailLogin.value,
+        senha: senhaLogin.value,
       }),
     });
-    const dados = await response.json();
-    console.log(response)
-    if (!response.ok) {
-      if ((response.status = 401)) {
-        msg_login.textContent = dados.detail;
-      } else {
-        msg_login.textContent = "Confira os dados enviados.";
-      }
+
+    let dados = {};
+    try {
+      dados = await resposta.json();
+    } catch {
+      // Resposta sem corpo JSON.
+    }
+
+    if (!resposta.ok) {
+      msgLogin.textContent = mensagemDeErro(dados, "Confira os dados enviados.");
+      msgLogin.style.color = "red";
       return;
     }
-    msg_login.textContent = "Verificação concluida.";
-    window.location.href='/static/pages/index.html';
-  } catch {
-    console.log(Error);
+
+    msgLogin.textContent = "Verificação concluída.";
+    msgLogin.style.color = "green";
+    window.location.href = "/painel";
+  } catch (erro) {
+    console.error("Falha no login:", erro);
+    msgLogin.textContent = "Não foi possível conectar. Tente novamente.";
+    msgLogin.style.color = "red";
   }
 }
-
-

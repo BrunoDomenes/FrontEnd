@@ -1,40 +1,43 @@
-document.addEventListener("DOMContentLoaded", async () =>{
-  VerificarSessao()
-    const response = await fetch("http://127.0.0.1:8000/me")
-    const dados = await response.json()
-    if (dados[2] == "admin"){
-      document.getElementById("class_admin").hidden = false
-    }else{document.getElementById("class_admin").hidden = true}
-})
+document.addEventListener("DOMContentLoaded", async () => {
+  document.getElementById("btn-logout")?.addEventListener("click", sair);
 
-function VerificarSessao(){
-  try{
-    const url = "http://127.0.0.1:8000/me"
+  try {
+    const resposta = await fetch("/me", { credentials: "same-origin" });
 
-    fetch(url)
-    .then(response =>{
-        if(response.status == 200){
-          return
-    }else if(response.status == 401){
-        window.location.href='http://127.0.0.1:8000/';
-      }
-    })
+    if (resposta.status === 401) {
+      window.location.href = "/";
+      return;
+    }
 
-  }catch{
-    console.log(Error)
+    if (!resposta.ok) {
+      return;
+    }
+
+    const dados = await resposta.json();
+    const linkAdmin = document.getElementById("class_admin");
+    if (linkAdmin) {
+      linkAdmin.hidden = dados?.user?.perfil !== "admin";
+    }
+  } catch (erro) {
+    console.error("Falha ao verificar a sessão:", erro);
   }
-}
+});
 
-async function logout(){
-   try{
-    const response = await fetch("http://127.0.0.1:8000/logout", {
-        method:"POST",
-        headers:{
-            "Content-type":"application/json"
-        },
-        body:JSON.stringify({}),
-      });
+async function sair(evento) {
+  evento.preventDefault();
 
-      location.reload()
-   }catch{console.log(Error)}
+  try {
+    await fetch("/logout", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: "{}",
+    });
+  } catch (erro) {
+    console.error("Falha ao encerrar a sessão:", erro);
+  } finally {
+    window.location.href = "/";
+  }
 }

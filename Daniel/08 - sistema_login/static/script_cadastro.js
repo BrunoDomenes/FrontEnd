@@ -1,39 +1,72 @@
-const nome = document.getElementById("nome_cadastro")
-const email = document.getElementById("email_cadastro")
-const senha = document.getElementById("senha_cadastro")
-const senha_confirmar = document.getElementById("senha_cadastro_confirmar")
+const nomeCadastro = document.getElementById("nome_cadastro");
+const emailCadastro = document.getElementById("email_cadastro");
+const senhaCadastro = document.getElementById("senha_cadastro");
+const senhaConfirmar = document.getElementById("senha_cadastro_confirmar");
 
-const form = document.getElementById("form-cadastro")
-const msg_cadastro = document.getElementById("msg_cadastro")
+const formCadastro = document.getElementById("form-cadastro");
+const msgCadastro = document.getElementById("msg_cadastro");
 
-form.addEventListener('submit', entrar)
+formCadastro?.addEventListener("submit", cadastrar);
 
-async function entrar(evento) {
-    evento.preventDefault()
+function mensagemDeErro(dados, padrao) {
+  if (!dados) return padrao;
+  if (typeof dados.detail === "string") return dados.detail;
+  if (Array.isArray(dados.detail) && dados.detail[0]?.msg) {
+    return dados.detail[0].msg;
+  }
+  return padrao;
+}
 
-    try{
+async function cadastrar(evento) {
+  evento.preventDefault();
+  msgCadastro.textContent = "";
+  msgCadastro.style.color = "";
 
-        if(senha.value != senha_confirmar.value){
-            msg_cadastro.textContent = "Senhas não são compativeis"
-            msg_cadastro.style.color = "red"
-            throw new Error("Senhas não são iguais")
-        }
+  if (senhaCadastro.value !== senhaConfirmar.value) {
+    msgCadastro.textContent = "As senhas não coincidem.";
+    msgCadastro.style.color = "red";
+    return;
+  }
 
-        const response = await fetch("http://127.0.0.1:8000/cadastro", {
-            method:"POST",
-            headers:{
-                "Content-type":"application/json"
-            },
-            body:JSON.stringify({
-                nome:nome.value,
-                email:email.value,
-                senha:senha.value
-            }),
-        });
-        const dados = await response.json()
-        msg_cadastro.textContent = "Cadastro feito!!, faça seu login"
-        msg_cadastro.style.color = "green"
-    }catch{
-        console.log(Error)
+  if (senhaCadastro.value.length < 8) {
+    msgCadastro.textContent = "A senha deve ter ao menos 8 caracteres.";
+    msgCadastro.style.color = "red";
+    return;
+  }
+
+  try {
+    const resposta = await fetch("/cadastro", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome: nomeCadastro.value,
+        email: emailCadastro.value,
+        senha: senhaCadastro.value,
+      }),
+    });
+
+    let dados = {};
+    try {
+      dados = await resposta.json();
+    } catch {
+      // Resposta sem corpo JSON.
     }
+
+    if (!resposta.ok) {
+      msgCadastro.textContent = mensagemDeErro(dados, "Não foi possível concluir o cadastro.");
+      msgCadastro.style.color = "red";
+      return;
+    }
+
+    msgCadastro.textContent = dados?.mensagem || "Cadastro concluído. Faça login.";
+    msgCadastro.style.color = "green";
+    formCadastro.reset();
+  } catch (erro) {
+    console.error("Falha no cadastro:", erro);
+    msgCadastro.textContent = "Não foi possível conectar. Tente novamente.";
+    msgCadastro.style.color = "red";
+  }
 }
