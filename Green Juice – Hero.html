@@ -12,96 +12,7 @@
       rel="stylesheet"
     />
     <style>
-      :root {
-        --bg: #fafdf7;
-        --ink: #1f2a1f;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) {
-          --bg: #14201a;
-          --ink: #e8f5e9;
-        }
-      }
-      :root[data-theme="dark"] {
-        --bg: #14201a;
-        --ink: #e8f5e9;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font-family: Inter, "Open Sans", sans-serif;
-      }
-      .hero {
-        position: relative;
-        width: 100%;
-        max-width: 1920px;
-        margin: 0 auto;
-        aspect-ratio: 16/9;
-        overflow: hidden;
-        container-type: inline-size;
-        background: #2e7d32;
-      }
-      .hero svg.bg {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-      }
-      .overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(31, 61, 33, 0.5);
-      }
-      .copy {
-        position: absolute;
-        left: 6cqw;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 50cqw;
-        color: #fafdf7;
-      }
-      .tag {
-        display: inline-block;
-        border: 0.15cqw solid #8bc34a;
-        color: #fafdf7;
-        border-radius: 5cqw;
-        padding: 0.5cqw 1.4cqw;
-        font-size: 1.2cqw;
-        font-weight: 500;
-        margin-bottom: 2cqw;
-      }
-      h1 {
-        font-family: Poppins, Nunito, sans-serif;
-        font-weight: 800;
-        font-size: 4.6cqw;
-        line-height: 1.1;
-        margin: 0 0 2cqw;
-      }
-      h1 span {
-        color: #8bc34a;
-      }
-      p {
-        font-size: 1.6cqw;
-        line-height: 1.5;
-        margin: 0 0 2.6cqw;
-        max-width: 42cqw;
-        font-weight: 400;
-      }
-      .btn {
-        display: inline-block;
-        background: #e8590c;
-        color: #fafdf7;
-        font-weight: 700;
-        font-size: 1.5cqw;
-        padding: 1.4cqw 3cqw;
-        border-radius: 1cqw;
-        text-decoration: none;
-        min-height: 48px;
-      }
+     
     </style>
   </head>
   <body>
@@ -303,18 +214,6 @@
           <ellipse rx="45" ry="20" fill="#C5E1A5" />
         </g>
       </svg>
-      <div class="overlay"></div>
-      <div class="copy">
-        <span class="tag">100% natural · prensado a frio</span>
-        <h1>
-          Seu dia mais leve começa com um copo de <span>Green Juice.</span>
-        </h1>
-        <p>
-          Sucos 100% naturais, prensados a frio e entregues fresquinhos na sua
-          porta. Escolha o kit de degustação ou monte sua assinatura.
-        </p>
-        <a class="btn" href="#formulario">Quero meu kit de degustação</a>
-      </div>
-    </div>
+      
   </body>
 </html>
